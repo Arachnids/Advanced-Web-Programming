@@ -1,49 +1,49 @@
 const Sequelize = require('../config/db.js')
-
-const Driver = sequelize.define('driver', {
+//import { Sequelize, sequelize } from '../config/db.js'
+const Driver = Sequelize.sequelize.define('driver', {
   uuid: {
-    type: Sequelize.UUID,
-    defaultValue: Sequelize.UUIDV4,
+    type: Sequelize.Sequelize.UUID,
+    defaultValue: Sequelize.Sequelize.UUIDV4,
     primaryKey: true,
   },
   dName: {
-    type: Sequelize.STRING
+    type: Sequelize.Sequelize.STRING
   },
   dPhoto: {
-    type: Sequelize.STRING
+    type: Sequelize.Sequelize.STRING
   },
   dNationality: {
-    type: Sequelize.STRING
+    type: Sequelize.Sequelize.STRING
   },
   dNumber: {
-    type: Sequelize.INTEGER
+    type: Sequelize.Sequelize.INTEGER
   },
   dPoints: {
-    type: Sequelize.INTEGER
+    type: Sequelize.Sequelize.INTEGER
   },
 });
 
-const Race = sequelize.define('race', {
+const Race = Sequelize.sequelize.define('race', {
   uuid: {
-    type: Sequelize.UUID,
-    defaultValue: Sequelize.UUIDV4,
+    type: Sequelize.Sequelize.UUID,
+    defaultValue: Sequelize.Sequelize.UUIDV4,
     primaryKey: true,
   },
   rVenue: {
-    type: Sequelize.STRING
+    type: Sequelize.Sequelize.STRING
   },
   rDate: {
-    type: Sequelize.DATE
+    type: Sequelize.Sequelize.DATE
   }
 });
 
-const Result = sequelize.define('result', {
+const Result = Sequelize.sequelize.define('result', {
   uuid: {
-    type: Sequelize.UUID,
-    defaultValue: Sequelize.UUIDV4,
+    type: Sequelize.Sequelize.UUID,
+    defaultValue: Sequelize.Sequelize.UUIDV4,
     primaryKey: true,
   },
   points: {
-    type: Sequelize.INTEGER
+    type: Sequelize.Sequelize.INTEGER
   }
 });

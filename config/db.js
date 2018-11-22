@@ -13,3 +13,4 @@ const sequelize = new Sequelize('formula1', 'postgres', '123', {
 });
 
 module.exports.sequelize = sequelize;
+module.exports.Sequelize = Sequelize;
