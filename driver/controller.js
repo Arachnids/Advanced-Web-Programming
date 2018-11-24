@@ -1,96 +1,41 @@
 const Model = require('./model.js');
-const DB = require('../config/db.js');
 
 function getAllDriver() {
-  return new Promise((resolve, reject) => {
-    DB.Driver.find((objError, objResult) => {
-      if (objError) {
-        return reject(objError);
-      }
-      return resolve(objResult);
-    });
-  });
+  return Model.Driver.findAll();
+}
+
+function getDriverByID(objDriver) {
+  return Model.Driver.findById(objDriver);
 }
 
 function createDriver(objDriver) {
-  return new Promise((resolve, reject) => {
-    const result = Joi.validate(objDriver, Model.schema);
-    DB.Driver.insert(result.value, (objError, objResult) => {
-      if (objError) {
-        return reject(objError);
-      }
-      return resolve(objResult);
-    });
+  return Model.Driver.create({
+    dName: objDriver.dName,
+    dPhoto: objDriver.dPhoto,
+    dNationality: objDriver.dNationality,
+    dNumber: objDriver.dNumber,
+    dPoints: objDriver.dPoints,
   });
 }
 
-// function updateDriver(objDriver) {
-//   return new Promise((resolve, reject) => {
-//     const intDriverId = mongojs.ObjectId(objDriver._id);
-//     const result = Joi.validate(objDriver, Model.schema);
-//     DB.Driver.update({ _id: intDriverId }, (objError, objResult) => {
-//       if (objError) {
-//         return reject(objError);
-//       }
-//       return resolve()
-//     }
-
-//   })
-//     {
-//       name: req.body.name,
-//       post: [
-//         {
-//           name: req.body.post.name,
-//           description: req.body.post.description,
-//           size: req.body.post.size,
-//           image: {
-//             fileName: req.body.post.fileName,
-//             originalName: req.body.post.originalName,
-//             path: req.body.post.path,
-//             mimeType: req.body.post.mimeType,
-//           },
-//           location: [
-//             {
-//               name: req.body.post.name,
-//               image:
-//               {
-//                 fileName: req.body.post.fileName,
-//                 originalName: req.body.post.originalName,
-//                 path: req.body.post.path,
-//                 mimeType: req.body.post.mimeType,
-//               },
-//               options: [
-//                 {
-//                   fileName: req.body.post.fileName,
-//                   originalName: req.body.post.originalName,
-//                   path: req.body.post.path,
-//                   type: req.body.post.type,
-//                   mimeType: req.body.post.mimeType,
-//                 },
-//               ],
-//             },
-//           ],
-//         },
-//       ],
-//     }
-//     );
-// }
+function updateDriver(uuid, dName, dPhoto, dNationality, dNumber, dPoints) {
+  return Model.Driver.update({
+    dName,
+    dPhoto,
+    dNationality,
+    dNumber,
+    dPoints,
+  },
+  { where: { uuid } });
+}
 
 function deleteDriver(objDriver) {
-  return new Promise((resolve, reject) => {
-    const intDriverId = mongojs.ObjectId(objDriver._id);
-    DB.Driver.remove({ _id: intDriverId }, (objError, objResult) => {
-      if (objError) {
-        return reject(objError);
-      }
-      return resolve(objResult);
-    });
-  });
+  return Model.Driver.destroy({ where: { uuid: objDriver.uuid } })
 }
 
 const Export = module.exports;
-
 Export.getAll = getAllDriver;
+Export.getByID = getDriverByID;
 Export.create = createDriver;
-// Export.putController = putController;
+Export.updateById = updateDriver;
 Export.delete = deleteDriver;

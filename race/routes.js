@@ -1,11 +1,9 @@
-module.exports.initialize = initialize;
-
 const Controller = require('./controller.js');
 
 function initialize(objOptions) {
   const app = objOptions.express;
 
-  app.get('/api/driver', (req, res) => {
+  app.get('/api/race', (req, res) => {
     Controller.getAll().then((objResolve) => {
       res.json(objResolve);
     }).catch((objError) => {
@@ -13,15 +11,15 @@ function initialize(objOptions) {
     });
   });
 
-  app.get('/api/driver/:uuid', (req, res) => {
-    Controller.getByID(req.params.uuid).then((objResolve) => {
+  app.get('/api/race/:uuid', (req, res) => {
+    Controller.getById(req.params.uuid).then((objResolve) => {
       res.json(objResolve);
     }).catch((objError) => {
       res.status(500).json(objError);
     });
   });
 
-  app.post('/api/driver', (req, res) => {
+  app.post('/api/race', (req, res) => {
     Controller.create(req.body).then((objResolve) => {
       res.json(objResolve);
     }).catch((objError) => {
@@ -29,7 +27,7 @@ function initialize(objOptions) {
     });
   });
 
-  app.put('/api/driver/:uuid', (req, res) => {
+  app.put('/api/race/:uuid', (req, res) => {
     Controller.updateById(
       req.params.uuid,
       req.body.dName,
@@ -44,7 +42,7 @@ function initialize(objOptions) {
     });
   });
 
-  app.delete('/api/driver', (req, res) => {
+  app.delete('/api/race', (req, res) => {
     Controller.delete(req.body).then((objResolve) => {
       res.json(objResolve);
     }).catch((objError) => {
@@ -52,3 +50,5 @@ function initialize(objOptions) {
     });
   });
 }
+
+module.exports.initialize = initialize;
