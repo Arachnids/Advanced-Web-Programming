@@ -18,7 +18,6 @@ if (process.env.DATABASE_URL) {
       idle: 10000,
     },
   });
-
 }
 
 module.exports.sequelize = sequelize;
