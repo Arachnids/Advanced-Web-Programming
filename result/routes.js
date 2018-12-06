@@ -2,11 +2,21 @@ const Controller = require('./controller.js');
 
 function initialize(objOptions) {
   const app = objOptions.express;
+  const db = objOptions.db;
 
   app.get('/api/result', (req, res) => {
     Controller.getAll().then((objResolve) => {
       res.json(objResolve);
     }).catch((objError) => {
+      res.status(500).json(objError);
+    });
+  });
+ 
+  app.get('/api/result/race/:uuid', (req, res) => {
+    Controller.getRace(req.params.uuid, db).then((objResolve) => {
+      res.json(objResolve);
+    }).catch((objError) => {
+      console.log(objError);
       res.status(500).json(objError);
     });
   });
@@ -18,6 +28,7 @@ function initialize(objOptions) {
       res.status(500).json(objError);
     });
   });
+
 
   app.post('/api/result', (req, res) => {
     Controller.create(req.body).then((objResolve) => {

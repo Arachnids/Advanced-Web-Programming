@@ -1,4 +1,19 @@
 const Controller = require('./controller.js');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const multer = require('multer');
+
+var storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: 'driver',
+  allowedFormats: ['jpg', 'png'],
+  filename: function (req, file, cb) {
+    cb(undefined, file.originalname);
+  }
+});
+ 
+var parser = multer({ storage: storage });
+
 
 function initialize(objOptions) {
   const app = objOptions.express;
@@ -19,8 +34,12 @@ function initialize(objOptions) {
     });
   });
 
-  app.post('/api/driver', (req, res) => {
-    Controller.create(req.body).then((objResolve) => {
+  app.post('/api/driver', parser.single('dPhoto'), (req, res) => {
+    const objData = {
+      ...req.body,
+      dPhoto: req.file.url
+    }
+    Controller.create(objData).then((objResolve) => {
       res.json(objResolve);
     }).catch((objError) => {
       res.status(500).json(objError);

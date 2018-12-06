@@ -1,4 +1,5 @@
 const Model = require('./model.js');
+const ModelD = require('../driver/model.js');
 
 function getAllResult() {
   return Model.Result.findAll();
@@ -6,6 +7,17 @@ function getAllResult() {
 
 function getResultById(strResultId) {
   return Model.Result.findById(strResultId);
+}
+
+function getRace(strRaceId, db) {
+  // console.log('asdasd', db);
+  return Model.Result.findAll({
+    where: { raceUuid: strRaceId },
+    include: [{
+      model: db.sequelize.models.driver,
+      as: "Driver"
+    }]
+  });
 }
 
 function createResult(objResult) {
@@ -30,6 +42,7 @@ function deleteResult(strResultId) {
 const Export = module.exports;
 Export.getAll = getAllResult;
 Export.getById = getResultById;
+Export.getRace = getRace;
 Export.create = createResult;
 Export.updateById = updateResultById;
 Export.delete = deleteResult;
