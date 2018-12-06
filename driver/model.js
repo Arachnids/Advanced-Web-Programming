@@ -21,6 +21,12 @@ const Driver = Sequelize.sequelize.define('driver', {
   dPoints: {
     type: Sequelize.Sequelize.INTEGER,
   },
+  dTeam: {
+    type: Sequelize.Sequelize.STRING,
+  },
+  dFlag: {
+    type: Sequelize.Sequelize.STRING,
+  },
 });
 
 module.exports.Driver = Driver;

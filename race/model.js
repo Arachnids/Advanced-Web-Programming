@@ -12,6 +12,9 @@ const Race = Sequelize.sequelize.define('race', {
   rDate: {
     type: Sequelize.Sequelize.DATE,
   },
+  rImage: {
+    type: Sequelize.Sequelize.STRING,
+  },
 });
 
 module.exports.Race = Race;

@@ -1,5 +1,3 @@
-module.exports.initialize = initialize;
-
 const Controller = require('./controller.js');
 
 function initialize(objOptions) {
@@ -37,6 +35,8 @@ function initialize(objOptions) {
       req.body.dNationality,
       req.body.dNumber,
       req.body.dPoints,
+      req.body.dTeam,
+      req.body.dFlag,
     ).then((objResolve) => {
       res.json(objResolve);
     }).catch((objError) => {
@@ -52,3 +52,5 @@ function initialize(objOptions) {
     });
   });
 }
+
+module.exports.initialize = initialize;

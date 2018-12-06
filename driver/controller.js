@@ -15,16 +15,20 @@ function createDriver(objDriver) {
     dNationality: objDriver.dNationality,
     dNumber: objDriver.dNumber,
     dPoints: objDriver.dPoints,
+    dTeam: objDriver.dTeam,
+    dFlag: objDriver.dFlag,
   });
 }
 
-function updateDriver(uuid, dName, dPhoto, dNationality, dNumber, dPoints) {
+function updateDriver(uuid, dName, dPhoto, dNationality, dNumber, dPoints, dTeam, dFlag) {
   return Model.Driver.update({
     dName,
     dPhoto,
     dNationality,
     dNumber,
     dPoints,
+    dTeam,
+    dFlag,
   },
   { where: { uuid } });
 }

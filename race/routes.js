@@ -29,12 +29,9 @@ function initialize(objOptions) {
 
   app.put('/api/race/:uuid', (req, res) => {
     Controller.updateById(
-      req.params.uuid,
-      req.body.dName,
-      req.body.dPhoto,
-      req.body.dNationality,
-      req.body.dNumber,
-      req.body.dPoints,
+      req.params.rVenue,
+      req.body.rDate,
+      req.body.rImage,
     ).then((objResolve) => {
       res.json(objResolve);
     }).catch((objError) => {

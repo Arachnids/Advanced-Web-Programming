@@ -12,13 +12,15 @@ function createRace(objRace) {
   return Model.Race.create({
     rVenue: objRace.rVenue,
     rDate: objRace.rDate,
+    rImage: objRace.rImage,
   });
 }
 
-function updateRaceById(uuid, rVenue, rDate) {
+function updateRaceById(uuid, rVenue, rDate, rImage) {
   return Model.Race.update({
     rVenue,
     rDate,
+    rImage,
   },
   { where: { uuid } });
 }

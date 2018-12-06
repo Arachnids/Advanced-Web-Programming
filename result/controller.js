@@ -8,7 +8,6 @@ function getResultById(strResultId) {
   return Model.Result.findById(strResultId);
 }
 
-
 function createResult(objResult) {
   return Model.Result.create({
     points: objResult.points,
