@@ -15,9 +15,6 @@ Sequelize.sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
-
-
-
 // ModelD.Driver.sync({ force: true }).then(() => {
 //   return ModelRa.Race.sync({ force: true }).then(() => {
 //     return ModelRe.Result.sync({ force: true }).then(() => {
@@ -32,7 +29,7 @@ Sequelize.sequelize
 //         //   rImage: "dsada",
 //         // });
 //       }, 2000);
-      
+
 //     })
 //   })
 // }).catch(err => {

@@ -2,7 +2,16 @@ const Model = require('./model.js');
 const ModelD = require('../driver/model.js');
 
 function getAllResult() {
-  return Model.Result.findAll();
+  return Model.Result.findAll({
+    include: [{
+      model: db.sequelize.models.driver,
+      as: "Driver"
+    },
+    {
+      model: db.sequelize.models.race,
+      as: "Race"
+    }]
+  });
 }
 
 function getResultById(strResultId) {

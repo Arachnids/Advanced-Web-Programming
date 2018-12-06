@@ -37,8 +37,8 @@ function initialize(objOptions) {
   app.post('/api/driver', parser.single('dPhoto'), (req, res) => {
     const objData = {
       ...req.body,
-      dPhoto: req.file.url
-    }
+      dPhoto: req.file.url,
+    };
     Controller.create(objData).then((objResolve) => {
       res.json(objResolve);
     }).catch((objError) => {
