@@ -5,7 +5,7 @@ function initialize(objOptions) {
   const db = objOptions.db;
 
   app.get('/api/result', (req, res) => {
-    Controller.getAll().then((objResolve) => {
+    Controller.getAll(db).then((objResolve) => {
       res.json(objResolve);
     }).catch((objError) => {
       res.status(500).json(objError);

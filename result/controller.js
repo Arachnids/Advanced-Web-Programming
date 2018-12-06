@@ -1,7 +1,7 @@
 const Model = require('./model.js');
 const ModelD = require('../driver/model.js');
 
-function getAllResult() {
+function getAllResult(db) {
   return Model.Result.findAll({
     include: [{
       model: db.sequelize.models.driver,
