@@ -6,9 +6,9 @@ const ModelRe = require('../result/model.js');
 Sequelize.sequelize
   .authenticate()
   .then(() => {
-    ModelRe.init();
+    // ModelRe.init();
     // Sequelize.sequelize.sync();
-    Sequelize.sequelize.sync({ force: true });
+    // Sequelize.sequelize.sync({ force: true });
     console.log('Connection has been established successfully.');
 
   })
