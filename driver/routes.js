@@ -3,7 +3,7 @@ const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
 
-var storage = cloudinaryStorage({
+const storage = cloudinaryStorage({
   cloudinary: cloudinary,
   folder: 'driver',
   allowedFormats: ['jpg', 'png'],
@@ -11,8 +11,8 @@ var storage = cloudinaryStorage({
     cb(undefined, file.originalname);
   }
 });
- 
-var parser = multer({ storage: storage });
+
+const parser = multer({ storage: storage });
 
 
 function initialize(objOptions) {
